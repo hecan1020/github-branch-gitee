@@ -32,7 +32,8 @@ runs:
         git branch --track ${{ inputs.github_branch }} remotes/github/${{ inputs.github_branch }}
       shell: bash
     - run: |
-        git remote add gitee https://${{ inputs.username }}:${{ inputs.password }}@gitee.com/${{ inputs.gitee_repo }}.git
+        remote_repo="https://${{ inputs.username }}:${{ inputs.password }}@gitee.com/${{ inputs.repository }}.git"
+        git remote add gitee "${remote_repo}"
         git show-ref
         git branch --verbose
         git push gitee ${{ inputs.github_branch }}:${{ inputs.gitee_branch }}
